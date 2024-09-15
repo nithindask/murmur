@@ -10,36 +10,66 @@
     <style>
         body {
             margin: 0;
-            padding: 50px;
+            padding: 10px;
             font-family: 'Josefin Sans';
+            border-style: outset;
+            margin: 30px;
+            cursor: not-allowed;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .head {
+            display: flex;
+            align-items: center;
+            border-style: inset;
+            margin: 10px;
+            padding: 10px;
         }
         .pfp {
             height: 8vw;
             width: 8vw;
             border-radius: 100px;
             margin-right: 20px;
-            padding: 20px;
-        }
-        .head {
-            display: flex;
-            align-items: center;
+            padding: 15px;
             border-style: outset;
-            margin: 20px;
-            margin: 10px;
+        }
+        p.main-head {
             padding: 10px;
+            padding-left: 20px;
+            margin: 0;
+            text-align: center;
+        }
+        .sub-head {
+            color: grey;
         }
         .desc {
             display: flex;
             align-items: center;
-            border-style: outset;
-            margin: 20px;
+            border-style: inset;
+            margin: 10px;
             padding: 20px;
+        }
+        .notepad-main {
+            display: flex;
+            align-items: center;
+            border-style: inset;
+            margin: 10px;
+            padding: 20px;
+            width: 80%;
+            padding-right: 40px;
         }
         .footer {
             align-items: center;
-            border-style: outset;
-            margin: 20px;
+            border-style: inset;
+            margin: 10px;
             padding: 20px;
+        }
+        .contact-head-main {
+            padding: 10px;
+        }
+        .contact {
+            border-style: outset;
         }
         .option {
             display: flex;
@@ -48,48 +78,46 @@
             padding: 10px;
             margin: 10px;
         }
-        .contact-head-main {
-            padding: 10px;
-        }
-        p.main-head {
-            font-size: 3.5vw;
-            padding: 10px;
-            padding-left: 20px;
-            margin: 0;
-            text-align: center;
-        }
-        .sub-head {
-            font-size: 3vw;
-        }
-        .contact {
-            border-style: outset;
-        }
         .contact-icon-insta {
             height: 40px;
             width: 40px;
+            border-style: outset;
         }
         .contact-icon-gmail {
             height: 40px;
             width: 40px;
+            border-style: outset;
         }
         .contact-icon-spotify {
             height: 30px;
             width: 30px;
-        }
-        .notepad-main {
-            display: flex;
-            align-items: center;
+            padding: 5px;
             border-style: outset;
-            margin: 20px;
-            padding: 20px;
-            width: 80%;
-            padding-right: 40px;
+        }
+        a.contact-icon {
+            text-decoration: none;
+            color: lightgrey;
+        }
+        .copyright-info {
+            border-style: outset;
+            margin-top: 10px;
+            padding: 10px;
+        }
+        .copyright-main {
+            font-size: 12px;
+        }
+        .copyright-main-dim {
+            color: lightgrey;
+        }
+        a.pfp-prot {
+            color: lightgrey;
         }
     </style>
 </head>
 <body>
     <div class="head">
-        <img class="pfp" src="img.jpg"><p class="main-head"><b>Nithin Das</b><br><font class="sub-head">simply living,</font></p>
+        <a id="pfp-link" class="pfp-prot" href=""><img class="pfp" src="img.jpg" alt="Profile Picture"></a>
+        <p class="main-head"><b>Nithin Das</b><br><font class="sub-head">simply living,</font></p>
     </div>
     <div class="desc">
         <p class="main-desc">Hey there! 👋 I'm Nithin, a passionate student on a journey to explore the wonders of life. Welcome to my corner of the web! Join me in this peaceful exploration where every discovery brings a smile. 🌿✨</p>
@@ -99,16 +127,44 @@
     </div>
     <div class="footer">
         <div class="contact">
-            <p class="contact-head-main">Contact :</p>
+            <p class="contact-head-main">Socials :</p>
             <div class="option">
-            <a href="https://instagram.com/_nithin.das"><img class="contact-icon-insta" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/df61fd9361187.560cd336ce5b2.png"></a>&nbsp;&nbsp;&nbsp;
-            <a href="mailto: knee-spirits-lily@duck.com"><img class="contact-icon-gmail" src="https://static-00.iconduck.com/assets.00/gmail-old-icon-2048x2048-czq9w1ua.png"></a>&nbsp;&nbsp;&nbsp;
-            <a href="https://open.spotify.com/user/31fkrqmkvwmisi35r4ujqnbgjxjm?si=15b88cbb640e480b"><img class="contact-icon-spotify" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Spotify_icon.svg/1982px-Spotify_icon.svg.png"></a>
+                <a class="contact-icon" href="https://instagram.com/_nithin.das"><img class="contact-icon-insta" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/df61fd9361187.560cd336ce5b2.png" alt="Instagram"></a>&nbsp;&nbsp;&nbsp;
+                <a class="contact-icon" href="mailto:knee-spirits-lily@duck.com"><img class="contact-icon-gmail" src="https://static-00.iconduck.com/assets.00/gmail-old-icon-2048x2048-czq9w1ua.png" alt="Gmail"></a>&nbsp;&nbsp;&nbsp;
+                <a class="contact-icon" href="https://open.spotify.com/user/31fkrqmkvwmisi35r4ujqnbgjxjm?si=15b88cbb640e480b"><img class="contact-icon-spotify" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Spotify_icon.svg/1982px-Spotify_icon.svg.png" alt="Spotify"></a>
             </div>
         </div>
         <div class="copyright-info">
-            <p class="copyright-main"></p>
+            <p class="copyright-main">&copy; all rights <font class="copyright-main-dim">un</font>reserved<font class="copyright-main-dim"> :)</font></p>
         </div>
     </div>
+    <script>
+        // The poem to display
+        const poem = `
+In a world where stars softly glow,
+And gentle breezes quietly flow,
+There shines a light both pure and true—
+The universe whispers, "You are beautiful."
+
+Among the leaves where sunlight plays,
+In the quiet dawn's first rays,
+Your eyes reflect the sky's embrace,
+A timeless dance, a tender grace.
+
+The moon admires your gentle soul,
+As rivers sing and winds unfold,
+For in this vast and wondrous space,
+Your beauty lights the human race.
+
+                                                              -nithindas
+        `;
+
+        document.getElementById('pfp-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            alert(poem);
+        });
+
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
 </body>
 </html>
