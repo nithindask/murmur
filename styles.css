@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    background-image: url('krishna.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    padding: 10px;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    margin: auto;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    flex: 1;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    color:rgb(119, 221, 255) ;
+    padding-bottom: 80px;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+    padding: 3px;
+    border-style: solid;
+    border-color: rgb(119, 221, 255);
+}
+
+h1 {
+    font-size: 2em;
+    margin: 3px;
+}
+
+h2 {
+    color: rgb(119, 221, 255);
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+section {
+    margin: 20px 0;
+    color: #bcbfbe;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+footer {
+    text-align: center;
+    margin-top: auto;
+    padding: 10px 0;
+}
+
+footer a {
+    color: #e3c163;
+    text-decoration: none;
+    margin: 0 10px;
+}
+.play-button {
+    background: none;
+    border: none;
+    margin: 0;
+}
+.mindspace {
+    background: none;
+    color: inherit;
+    width: 95%;
+    padding: 0px;
+    margin: 10px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
