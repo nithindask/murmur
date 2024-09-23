@@ -46,6 +46,8 @@ captchaSubmit.addEventListener('click', () => {
     } else {
         alert('Incorrect captcha, please try again.');
     }
+
+    document.addEventListener('contextmenu', event => event.preventDefault());
 });
 
 captchaRefresh.addEventListener('click', generateCaptcha);
