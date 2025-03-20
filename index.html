@@ -7,19 +7,51 @@
   <meta property="og:description" content="come and see for yourself what's inside !!">
   <meta property="og:image" content="https://nithindask.github.io/nithindas/icon.png">
   <title>nithin das</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="icon" href="icon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
-    @font-face {
-      font-family: nothing;
-      src: url("nothing.ttf");
+    ::selection {
+      background-color: lightgray;
+    }
+    .body {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .head, .introduction, .content, .footer {
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in-out forwards;
+    }
+    .head {
+      animation-delay: 0.2s;
+    }
+    .introduction {
+      animation-delay: 0.4s;
+    }
+    .content {
+      animation-delay: 0.6s;
+    }
+    .footer {
+      animation-delay: 0.8s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     body {
-      padding: 10px;
+      padding: 20px;
       font-family: "Poppins", sans-serif;
+      background-color: #fafafa;
+      color: #151922;
     }
     .head {
       display: flex;
@@ -28,47 +60,79 @@
       gap: 0px;
     }
     img {
-      width: 80px;
+      width: 65px;
       height: auto;
     }
     .one {
-        font-size: larger;
-        font-weight: 500;
         font-size: 50px;
-        text-align: center;
+        font-weight: 700;
     }
     .one-desc {
-      font-size: small;
-      font-weight: 400;
+      font-size: 16px;
+      font-weight: 100;
+    }
+    .h-content {
+      padding: 20px;
+    }
+    .h-idea {
       font-size: 15px;
-      text-align: center;
+      padding-top: 20px;
+    }
+    .a-idea {
+      color: green;
     }
     .socials {
-        font-size: 30px;
-        text-align: center;
+        font-size: 25px;
     }
     a.socials {
         color: black;
-        padding: 5px;
+        text-decoration: underline;
+        padding: 10px;
+    }
+    .cr-info {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 13px;
+    }
+    .a-cr {
+      color: black;
+      text-decoration: none;
+    }
+    .state {
+      text-align: center;
+      padding: 30px;
     }
   </style>
 </head>
 <body>
   <div class="head">
     <img src="icon.png" alt="icon" />
-    <h2>nithin das.</h2>
+    <h2 class="h-main">nithin das.</h2>
+  </div>
+  <br><br><hr><br><br>
+  <div class="introduction">
+    <p class="one">Purely random website<br> made by a <br>bored teenager &nbsp;:)</p>
+    <p class="one-desc">Maybe you'll find something useful here !? </p>
   </div>
   <hr>
-  <div class="container">
-    <p class="one"><br>Coming soon.</p>
-    <p class="one-desc">Stay tuned until I start <strong>procrastinating.</strong></p><br><br><br></p>
+  <div class="content">
+    <h2 class="h-content">there ya go :</h2>
+    <p class="state">currently empty    ¯\_(ツ)_/¯</p>
+    <div class="idea">
+      <p class="h-idea">Any new ideas to inculde here ? <a class="a-idea" href="https://forms.gle/yx1CygTs1nReZ9257">Click here</a></p>
+    </div>
   </div>
   <div class="footer">
     <hr><br>
     <div class="socials">
-        <a class="socials" href="https://instagram.com/_.oggye_"><i class="fa fa-instagram"></i></a>
-        <a class="socials" href="https://github.com/nithindask"><i class="fa fa-github"></i></a>
-        
+        <a class="socials" href="https://instagram.com/_.oggye_"><i class="fa-brands fa-instagram"></i></a>
+        <a class="socials" href="https://github.com/nithindask"><i class="fa-brands fa-github"></i></a>
+        <a class="socials" href="mailto:knee-spirits-lily@duck.com"><i class="fa-regular fa-envelope"></i></a>
+    </div>
+    <br><hr>
+    <div class="copyright">
+      <p class="cr-info">© 2025, <a class="a-cr" href="/">nithin das</a></p>
     </div>
   </div>
 </body>
