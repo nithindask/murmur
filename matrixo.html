@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:title" content="matrixo.">
+  <meta property="og:description" content="a simple matrix calculator">
+  <meta property="og:image" content="https://nithindask.github.io/murmur/matrixo.png">
+  <title>matrixo.</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="icon" href="matrixo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    ::selection {
+      background-color: lightgray;
+    }
+    .body {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .head, .introduction, .content, .footer {
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in-out forwards;
+    }
+    .head {
+      animation-delay: 0.2s;
+    }
+    .introduction {
+      animation-delay: 0.4s;
+    }
+    .content {
+      animation-delay: 0.6s;
+    }
+    .footer {
+      animation-delay: 0.8s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    #theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      color: currentColor;
+      z-index: 100;
+      transition: color 0.3s;
+    }
+    .dark-mode {
+      background-color: black;
+      color: #fafafa;
+    }
+    body {
+      padding: 20px;
+      font-family: "Poppins", sans-serif;
+      background-color: #fafafa;
+      color: #151922;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0px;
+    }
+    img {
+      width: 65px;
+      height: auto;
+    }
+    .one-desc {
+      font-size: 28px;
+      font-weight: 700;
+    }
+    .content {
+      padding-top : 40px;
+      padding-bottom: 40px;
+    }
+    .contebt label {
+      font-weight: bold;
+    }
+    .content textarea {
+        width: 100%;
+        height: 150px;
+        padding: 8px;
+        box-sizing: border-box;
+        background-color: #fafafa;
+        color: #151922;
+        border: 1px solid #151922;
+        border-radius: 10px;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    .content button {
+        padding: 10px;
+        margin: 5px;
+        cursor: pointer;
+        background-color: #fafafa;
+        color: #151922;
+        border: 1px solid #151922;
+        border-radius: 10px;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    .dark-mode .textarea {
+        background-color: #000;
+        color: #fafafa;
+        border-color: #fafafa;
+    }
+    .dark-mode .btn {
+        background-color: #000;
+        color: #fafafa;
+        border: 1px solid #fafafa;
+    }
+    mark {
+      background-color: lightgreen;
+    }
+    .socials {
+        font-size: 25px;
+        text-align: center;
+    }
+    a.socials {
+        color: inherit;
+        text-decoration: underline;
+        padding: 10px;
+    }
+    .cr-info {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 13px;
+    }
+    .a-cr {
+      color: inherit;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <button id="theme-toggle" onclick="toggleTheme()">
+    <span class="icon"><i class="fas fa-adjust"></i></span>
+  </button>
+  <div class="head">
+    <img src="matrixo.png" alt="icon" />
+    <h2 class="h-main">matrixo.</h2>
+  </div>
+  <br><br><hr>
+  <div class="introduction">
+    <p class="one-desc">A simple matrix calculator </p>
+  </div>
+  <hr>
+  <div class="content">
+
+        <div>
+            <label for="matrixA"><b>Matrix A :</b></label>
+            <textarea class="textarea" id="matrixA" rows="4" cols="30"></textarea>
+        </div>
+        <div>
+            <label for="matrixB"><b>Matrix B :</b></label>
+            <textarea class="textarea" id="matrixB" rows="4" cols="30"></textarea>
+        </div>
+        <div>
+            <button class="btn" onclick="performOperation('add')">Add</button>
+            <button class="btn" onclick="performOperation('subtract')">Subtract</button>
+            <button class="btn" onclick="performOperation('multiply')">Multiply</button>
+            <button class="btn" onclick="performOperation('determinant')">Determinant (A)</button>
+            <button class="btn" onclick="performOperation('cofactor')">Cofactor (A)</button>
+            <button class="btn" onclick="performOperation('adjoint')">Adjoint (A)</button>
+            <button class="btn" onclick="performOperation('inverse')">Inverse (A)</button>
+        </div>
+        <div>
+            <label>Result:</label>
+            <textarea class="textarea" id="result" rows="4" cols="30" readonly></textarea>
+        </div>
+
+    </div>
+  </div>
+  <div class="footer">
+    <hr><br>
+    <div class="socials">
+        <a class="socials" href="https://instagram.com/_.oggye_"><i class="fa-brands fa-instagram"></i></a>
+        <a class="socials" href="https://github.com/nithindask"><i class="fa-brands fa-github"></i></a>
+        <a class="socials" href="mailto:knee-spirits-lily@duck.com"><i class="fa-regular fa-envelope"></i></a>
+    </div>
+    <br><hr>
+    <div class="copyright">
+      <p class="cr-info">© 2025, <a class="a-cr" href="/murmur">murmur</a></p>
+    </div>
+  </div>
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    // Helper function to parse matrix from string input
+    function parseMatrix(input) {
+            return input.trim().split('\n').map(row => row.trim().split(/\s+/).map(Number));
+        }
+
+        // Helper function to convert matrix back to string
+        function matrixToString(matrix) {
+            return matrix.map(row => row.join('\t')).join('\n');
+        }
+
+        // Cofactor matrix calculation
+        function cofactor(matrix) {
+            const n = matrix.length;
+            const cofactorMatrix = [];
+
+            for (let i = 0; i < n; i++) {
+                cofactorMatrix[i] = [];
+                for (let j = 0; j < n; j++) {
+                    // Create a submatrix excluding row i and column j
+                    const minorMatrix = matrix
+                        .filter((_, rowIndex) => rowIndex !== i)
+                        .map(row => row.filter((_, colIndex) => colIndex !== j));
+
+                    // Cofactor value: determinant of the minor * (-1)^(i + j)
+                    cofactorMatrix[i][j] = Math.pow(-1, i + j) * determinant(minorMatrix);
+                }
+            }
+
+            return cofactorMatrix;
+        }
+
+        // Matrix determinant calculation
+        function determinant(matrix) {
+            const n = matrix.length;
+            if (n === 1) return matrix[0][0];
+            if (n === 2) return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+
+            let det = 0;
+            for (let i = 0; i < n; i++) {
+                const subMatrix = matrix.slice(1).map(row => row.filter((_, index) => index !== i));
+                det += matrix[0][i] * Math.pow(-1, i) * determinant(subMatrix);
+            }
+            return det;
+        }
+
+        // Matrix inverse calculation
+        function inverse(matrix) {
+            const det = determinant(matrix);
+            if (det === 0) {
+                alert("Matrix is singular and cannot be inverted.");
+                return;
+            }
+            const cofactorMatrix = cofactor(matrix);
+            const adjointMatrix = transpose(cofactorMatrix);
+            return adjointMatrix.map(row => row.map(el => el / det));
+        }
+
+        // Matrix adjoint calculation (transpose of cofactor matrix)
+        function adjoint(matrix) {
+            const cofactorMatrix = cofactor(matrix);
+            return transpose(cofactorMatrix);
+        }
+
+        // Matrix transpose function
+        function transpose(matrix) {
+            return matrix[0].map((_, colIndex) => matrix.map(row => row[colIndex]));
+        }
+
+        // Function to perform selected matrix operation
+        function performOperation(operation) {
+            let matrixA = parseMatrix(document.getElementById('matrixA').value);
+            let matrixB = parseMatrix(document.getElementById('matrixB').value);
+            let result;
+
+            switch (operation) {
+                case 'add':
+                    if (matrixA.length !== matrixB.length || matrixA[0].length !== matrixB[0].length) {
+                        alert("Matrices must be of the same dimensions to perform addition.");
+                        return;
+                    }
+                    result = matrixA.map((row, i) =>
+                        row.map((_, j) => matrixA[i][j] + matrixB[i][j])
+                    );
+                    break;
+
+                case 'subtract':
+                    if (matrixA.length !== matrixB.length || matrixA[0].length !== matrixB[0].length) {
+                        alert("Matrices must be of the same dimensions to perform subtraction.");
+                        return;
+                    }
+                    result = matrixA.map((row, i) =>
+                        row.map((_, j) => matrixA[i][j] - matrixB[i][j])
+                    );
+                    break;
+
+                case 'multiply':
+                    if (matrixA[0].length !== matrixB.length) {
+                        alert("Matrix A's columns must match Matrix B's rows for multiplication.");
+                        return;
+                    }
+                    result = matrixA.map(rowA =>
+                        matrixB[0].map((_, colIndex) =>
+                            rowA.reduce((sum, elA, rowIndex) => sum + elA * matrixB[rowIndex][colIndex], 0)
+                        )
+                    );
+                    break;
+
+                case 'determinant':
+                    result = determinant(matrixA);
+                    break;
+
+                case 'cofactor':
+                    result = cofactor(matrixA);
+                    break;
+
+                case 'inverse':
+                    result = inverse(matrixA);
+                    break;
+
+                case 'adjoint':
+                    result = adjoint(matrixA);
+                    break;
+
+                default:
+                    alert("Invalid operation.");
+                    return;
+            }
+
+            document.getElementById('result').value = Array.isArray(result) ? matrixToString(result) : result;
+        }
+  </script>
+</body>
+</html>
