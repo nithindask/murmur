@@ -13,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <style>
     ::selection {
       background-color: lightgray;
@@ -47,11 +48,28 @@
         transform: translateY(0);
       }
     }
+    #theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      color: currentColor;
+      z-index: 100;
+      transition: color 0.3s;
+    }
+    .dark-mode {
+      background-color: black;
+      color: #fafafa;
+    }
     body {
       padding: 20px;
       font-family: "Poppins", sans-serif;
       background-color: #fafafa;
       color: #151922;
+      transition: background-color 0.3s, color 0.3s;
     }
     .head {
       display: flex;
@@ -71,23 +89,45 @@
       font-size: 16px;
       font-weight: 100;
     }
+    .content {
+      padding-top: 40px;
+    }
+    .content a {
+      color: inherit;
+      text-decoration: none;
+    }
     .h-content {
       padding: 0px;
-      padding-top: 0px;
+    }
+    .cont-box {
+      padding: 0px;
+      padding-left: 20px;
+      border: 2px solid currentColor;
+      border-radius: 20px;
+    }
+    .cont-desc {
+      padding: 20px;
+      padding-left: 0px;
+    }
+    mark {
+      background-color: lightgreen;
+    }
+    .arrow {
+      font-family: "";
     }
     .h-idea {
       font-size: 15px;
       padding-top: 20px;
     }
     .a-idea {
-      color: green;
+      color: inherit;
     }
     .socials {
         font-size: 25px;
         text-align: center;
     }
     a.socials {
-        color: black;
+        color: inherit;
         text-decoration: underline;
         padding: 10px;
     }
@@ -98,7 +138,7 @@
       padding: 13px;
     }
     .a-cr {
-      color: black;
+      color: inherit;
       text-decoration: none;
     }
     .state {
@@ -108,6 +148,9 @@
   </style>
 </head>
 <body>
+  <button id="theme-toggle" onclick="toggleTheme()">
+    <span class="icon"><i class="fas fa-adjust"></i></span>
+  </button>
   <div class="head">
     <img src="icon.png" alt="icon" />
     <h2 class="h-main">murmur.</h2>
@@ -119,8 +162,12 @@
   </div>
   <hr>
   <div class="content">
-    <h2 class="h-content">contents :</h2>
-    <p class="state">currently empty    ¯\_(ツ)_/¯</p>
+    <a href="/murmur/matrixo.html">
+      <div class="cont-box">
+      <h2>matrixo &nbsp;&nbsp;<font class="arrow">></font></h2>
+      <p class="cont-desc">Matrixo is a matrix calculator which helps to do<mark> matrix calculations </mark>in mathematics.</p>
+    </div></a></div>
+    <p class="state">that's it &nbsp;&nbsp;¯\_(ツ)_/¯</p>
     <div class="idea">
       <p class="h-idea">Got any idea to add to this ? <a class="a-idea" href="https://forms.gle/yx1CygTs1nReZ9257">Click here</a></p>
     </div>
@@ -134,8 +181,13 @@
     </div>
     <br><hr>
     <div class="copyright">
-      <p class="cr-info">© 2025, <a class="a-cr" href="/murmur">nithin das</a></p>
+      <p class="cr-info">© 2025, <a class="a-cr" href="/murmur">murmur</a></p>
     </div>
   </div>
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
 </body>
 </html>
