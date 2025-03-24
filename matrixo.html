@@ -210,139 +210,142 @@
   </div>
   <script>
     function toggleTheme() {
-      document.body.classList.toggle('dark-mode');
+      const body = document.body;
+      body.classList.toggle('dark-mode');
+      const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+      localStorage.setItem('theme', currentTheme);
     }
 
-    // Helper function to parse matrix from string input
+    function applySavedTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    }
+    
+    applySavedTheme();
+
     function parseMatrix(input) {
-            return input.trim().split('\n').map(row => row.trim().split(/\s+/).map(Number));
-        }
+      return input.trim().split('\n').map(row => row.trim().split(/\s+/).map(Number));
+    }
 
-        // Helper function to convert matrix back to string
-        function matrixToString(matrix) {
-            return matrix.map(row => row.join('\t')).join('\n');
-        }
+    function matrixToString(matrix) {
+      return matrix.map(row => row.join('\t')).join('\n');
+    }
 
-        // Cofactor matrix calculation
-        function cofactor(matrix) {
-            const n = matrix.length;
-            const cofactorMatrix = [];
+    function cofactor(matrix) {
+      const n = matrix.length;
+      const cofactorMatrix = [];
 
-            for (let i = 0; i < n; i++) {
-                cofactorMatrix[i] = [];
-                for (let j = 0; j < n; j++) {
-                    // Create a submatrix excluding row i and column j
-                    const minorMatrix = matrix
-                        .filter((_, rowIndex) => rowIndex !== i)
-                        .map(row => row.filter((_, colIndex) => colIndex !== j));
+      for (let i = 0; i < n; i++) {
+          cofactorMatrix[i] = [];
+      for (let j = 0; j < n; j++) {
 
-                    // Cofactor value: determinant of the minor * (-1)^(i + j)
-                    cofactorMatrix[i][j] = Math.pow(-1, i + j) * determinant(minorMatrix);
-                }
-            }
+      const minorMatrix = matrix
+        .filter((_, rowIndex) => rowIndex !== i)
+        .map(row => row.filter((_, colIndex) => colIndex !== j));
+        cofactorMatrix[i][j] = Math.pow(-1, i + j) * determinant(minorMatrix);
+      }
+      }
 
-            return cofactorMatrix;
-        }
+      return cofactorMatrix;
+    }
 
-        // Matrix determinant calculation
-        function determinant(matrix) {
-            const n = matrix.length;
-            if (n === 1) return matrix[0][0];
-            if (n === 2) return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+    function determinant(matrix) {
+      const n = matrix.length;
+      if (n === 1) return matrix[0][0];
+      if (n === 2) return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
 
-            let det = 0;
-            for (let i = 0; i < n; i++) {
-                const subMatrix = matrix.slice(1).map(row => row.filter((_, index) => index !== i));
-                det += matrix[0][i] * Math.pow(-1, i) * determinant(subMatrix);
-            }
-            return det;
-        }
+      let det = 0;
+      for (let i = 0; i < n; i++) {
+        const subMatrix = matrix.slice(1).map(row => row.filter((_, index) => index !== i));
+        det += matrix[0][i] * Math.pow(-1, i) * determinant(subMatrix);
+      }
+      return det;
+    }
 
-        // Matrix inverse calculation
-        function inverse(matrix) {
-            const det = determinant(matrix);
-            if (det === 0) {
-                alert("Matrix is singular and cannot be inverted.");
-                return;
-            }
-            const cofactorMatrix = cofactor(matrix);
-            const adjointMatrix = transpose(cofactorMatrix);
-            return adjointMatrix.map(row => row.map(el => el / det));
-        }
+    function inverse(matrix) {
+      const det = determinant(matrix);
+      if (det === 0) {
+        alert("Matrix is singular and cannot be inverted.");
+        return;
+      }
+      const cofactorMatrix = cofactor(matrix);
+      const adjointMatrix = transpose(cofactorMatrix);
+      return adjointMatrix.map(row => row.map(el => el / det));
+    }
 
-        // Matrix adjoint calculation (transpose of cofactor matrix)
-        function adjoint(matrix) {
-            const cofactorMatrix = cofactor(matrix);
-            return transpose(cofactorMatrix);
-        }
+    function adjoint(matrix) {
+      const cofactorMatrix = cofactor(matrix);
+      return transpose(cofactorMatrix);
+    }
 
-        // Matrix transpose function
-        function transpose(matrix) {
-            return matrix[0].map((_, colIndex) => matrix.map(row => row[colIndex]));
-        }
+    function transpose(matrix) {
+      return matrix[0].map((_, colIndex) => matrix.map(row => row[colIndex]));
+    }
 
-        // Function to perform selected matrix operation
-        function performOperation(operation) {
-            let matrixA = parseMatrix(document.getElementById('matrixA').value);
-            let matrixB = parseMatrix(document.getElementById('matrixB').value);
-            let result;
+    function performOperation(operation) {
+      let matrixA = parseMatrix(document.getElementById('matrixA').value);
+      let matrixB = parseMatrix(document.getElementById('matrixB').value);
+      let result;
 
-            switch (operation) {
-                case 'add':
-                    if (matrixA.length !== matrixB.length || matrixA[0].length !== matrixB[0].length) {
-                        alert("Matrices must be of the same dimensions to perform addition.");
-                        return;
-                    }
-                    result = matrixA.map((row, i) =>
-                        row.map((_, j) => matrixA[i][j] + matrixB[i][j])
-                    );
-                    break;
+      switch (operation) {
+        case 'add':
+          if (matrixA.length !== matrixB.length || matrixA[0].length !== matrixB[0].length) {
+            alert("Matrices must be of the same dimensions to perform addition.");
+            return;
+          }
+          result = matrixA.map((row, i) =>
+            row.map((_, j) => matrixA[i][j] + matrixB[i][j])
+          );
+          break;
 
-                case 'subtract':
-                    if (matrixA.length !== matrixB.length || matrixA[0].length !== matrixB[0].length) {
-                        alert("Matrices must be of the same dimensions to perform subtraction.");
-                        return;
-                    }
-                    result = matrixA.map((row, i) =>
-                        row.map((_, j) => matrixA[i][j] - matrixB[i][j])
-                    );
-                    break;
+        case 'subtract':
+          if (matrixA.length !== matrixB.length || matrixA[0].length !== matrixB[0].length) {
+            alert("Matrices must be of the same dimensions to perform subtraction.");
+            return;
+          }
+          result = matrixA.map((row, i) =>
+            row.map((_, j) => matrixA[i][j] - matrixB[i][j])
+          );
+          break;
 
-                case 'multiply':
-                    if (matrixA[0].length !== matrixB.length) {
-                        alert("Matrix A's columns must match Matrix B's rows for multiplication.");
-                        return;
-                    }
-                    result = matrixA.map(rowA =>
-                        matrixB[0].map((_, colIndex) =>
-                            rowA.reduce((sum, elA, rowIndex) => sum + elA * matrixB[rowIndex][colIndex], 0)
-                        )
-                    );
-                    break;
+        case 'multiply':
+          if (matrixA[0].length !== matrixB.length) {
+            alert("Matrix A's columns must match Matrix B's rows for multiplication.");
+            return;
+          }
+          result = matrixA.map(rowA =>
+            matrixB[0].map((_, colIndex) =>
+              rowA.reduce((sum, elA, rowIndex) => sum + elA * matrixB[rowIndex][colIndex], 0)
+            )
+          );
+          break;
 
-                case 'determinant':
-                    result = determinant(matrixA);
-                    break;
+        case 'determinant':
+          result = determinant(matrixA);
+          break;
 
-                case 'cofactor':
-                    result = cofactor(matrixA);
-                    break;
+        case 'cofactor':
+          result = cofactor(matrixA);
+          break;
 
-                case 'inverse':
-                    result = inverse(matrixA);
-                    break;
+        case 'inverse':
+          result = inverse(matrixA);
+          break;
 
-                case 'adjoint':
-                    result = adjoint(matrixA);
-                    break;
+        case 'adjoint':
+          result = adjoint(matrixA);
+          break;
 
-                default:
-                    alert("Invalid operation.");
-                    return;
-            }
+        default:
+          alert("Invalid operation.");
+          return;
+      }
 
-            document.getElementById('result').value = Array.isArray(result) ? matrixToString(result) : result;
-        }
+      document.getElementById('result').value = Array.isArray(result) ? matrixToString(result) : result;
+    }
+    document.addEventListener('contextmenu', event => event.preventDefault());
   </script>
 </body>
 </html>
